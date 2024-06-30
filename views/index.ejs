@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            grid-template-rows: repeat(8, minmax(0, 1fr));
+            width: 400px;
+            height: 400px;
+            transform: rotate(0deg);
+        }
+
+        .piece.white {
+            color: white;
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+        }
+
+        .piece.black {
+            color: black;
+        }
+
+        .flipped {
+            transform: rotate(180deg);
+        }
+
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .square.light {
+            background-color: #f0d9b5;
+        }
+
+        .square.dark {
+            background-color: #b58863;
+        }
+
+        .piece {
+            font-size: 36px;
+            cursor: pointer;
+        }
+
+        .piece.draggable {
+            cursor: grab;
+        }
+
+        .dragging {
+            opacity: 0.5;
+        }
+
+        .flipped .piece {
+            transform: rotate(180deg);
+        }
+
+        body {
+            background: linear-gradient(135deg, #ece4b7, #a0855b);
+            min-height: 100vh;
+        }
+
+        .bg-brown-light {
+            background-color: #d2b48c;
+        }
+
+        .bg-brown-dark {
+            background-color: #8b4513;
+        }
+
+        .text-brown-light {
+            color: #d2b48c;
+        }
+
+        .text-brown-dark {
+            color: #8b4513;
+        }
+
+        .rounded-lg {
+            border-radius: 0.75rem;
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hover\:shadow-lg:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-br from-brown-light to-brown-dark">
+        <div id="role-display" class="text-white mb-4 text-xl font-bold"></div>
+        <div class="chessboard bg-white rounded-lg shadow-md transition-all"></div>
+        <div id="game-over-message" class="text-white mt-4 text-lg font-semibold"></div>
+        <button id="new-game-button" class="mt-4 px-4 py-2 bg-brown-dark text-white rounded-lg shadow-md hover:shadow-lg transition-all" style="display:none;">New Game</button>
+    </div>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" integrity="sha512-xRllwz2gdZciIB+AkEbeq+gVhX8VB8XsfqeFbUh+SzHlN96dEduwtTuVuc2u9EROlmW9+yhRlxjif66ORpsgVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/chessgame.js"></script>
+</body>
+
+</html>
